@@ -1,0 +1,39 @@
+<launch>
+    <!-- If you want to generate a ROS bag with the recorded simulated data, set this flag to true -->
+    <arg name="record" default="false"/>
+
+    <!-- CARGAMOS EL MAPA -->    
+    <include file="$(find uuv_gazebo_worlds)/launch/mangalia.launch"/>
+
+    <!-- ANADIMOS EL SUBMARINO (namespace: rexrov) -->
+    <include file="$(find uuv_descriptions)/launch/upload_rexrov.launch">
+        <arg name="x" default="20"/>
+        <arg name="y" default="0"/>
+        <arg name="z" default="-20"/>
+        <arg name="yaw" default="0"/>
+    </include>
+
+    <!-- INICIAMOS EL JOYSTICK -->
+    <include file="$(find uuv_control_cascaded_pid)/launch/joy_velocity.launch">
+        <arg name="uuv_name" value="rexrov"/>
+        <arg name="model_name" value="rexrov"/>
+	<arg name="joy_id" value="0"/>
+    </include>
+
+    <!-- Start the recording node  -->
+    <include file="$(find uuv_gazebo)/launch/controller_demos/record_demo.launch">
+      <arg name="record" value="$(arg record)"/>
+    </include>
+
+    <!-- Open RViz for visualization of sensor data and visualization markers -->
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find uuv_gazebo)/rviz/controller_demo.rviz"/>
+
+
+    <!--
+    You can run this demo as
+
+    >> roslaunch uuv_tutorial_dp_controller joystick.launch
+
+    
+    -->
+</launch>
