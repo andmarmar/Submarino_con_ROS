@@ -35,18 +35,56 @@ git clone "url"
 cd ..
 catkin_make
 ```
-> **Mando de XBOX y Teclado**
+
+Al arrancar cada terminal, se debera de introducir
 ```
-cd catkin_w
+cd catkin_ws
+source devel/setuo.bash
+```
+> **Mando de XBOX y Teclado**
+``` 1º terminal (cargar un mundo)
+roslaunch uuv_gazebo_worlds mangalia.launch
+
+``` 2º terminal (cargar el modelo rexrov)
+roslaunch uuv_descriptions upload_rexrov.launch
+
+``` 3º terminal (Control por teclado)
+roslaunch uuv_control_cascaded_pid key_board_velocity.launch uuv_name:=rexrov model_name:=rexrov
+
+``` 3º terminal (Control por joystick)
+roslaunch uuv_control_cascaded_pid joy_velocity.launch uuv_name:=rexrov model_name:=rexrov joy_id:=0
 
 ```
 > **Controlador**
-
-> **Adición de una corriente**
-
-
-# Referencias usadas
 ```
+roslaunch uuv_tutorial_dp_controller start_tutorial_dp_controller_demo.launch
+
+```
+> **Creación de una corriente**
+``` Añadir una corriente manualmente
+rosservice call /hydrodynamics/set_current_velocity "velocity: 1.0"
+rosservice call /hydrodynamics/set_current_horz_angle "angle: 0.8"
+rosservice call /hydrodynamics/set_current_vert_angle "angle: 0.5"
+
+``` Añadir una corriente o otras perturbaciones a traves de disturbances.yaml
+roslaunch uuv_tutorial_disturbances tutorial_disturbance_bueno.launch
+```
+
+> **Creación plume**
+
+``` 1º terminal (servidor de velocidad)
+roslaunch uuv_plume_simulator start_current_velocity_server.launch
+
+``` 2º terminal (servidor de plume)
+roslaunch uuv_plume_simulator start_plume_server.launch current_velocity_topic:=/current_velocity_server/current_velocity update_rate:=5
+
+``` 3º terminal (ejecución de plume turbulento)
+roslaunch uuv_plume_simulator start_demo_turbulent_plume.launch
+
+```
+# Referencias usadas
+
+
 @article{Simulator,
    author = {Daniel Cook, Andres Vardy, Ron Lewis},
    journal = {ResearchGate},
@@ -73,20 +111,6 @@ cd catkin_w
    url = {http://www.coep.ufrj.br/~ramon/COE-841/robotics/book%202010%20-%20Theory%20of%20Applied%20Robotics%20Kinematics,%20Dynamics,%20and%20Control%20-%20Jazar.pdf},
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
