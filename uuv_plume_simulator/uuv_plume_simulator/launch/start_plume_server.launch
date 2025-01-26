@@ -1,5 +1,5 @@
 <launch>
-  <arg name="current_velocity_topic" default="/hydrodynamics/current_velocity"/>
+  <arg name="current_velocity_topic" default="/current_velocity_server/current_velocity"/>
   <arg name="update_rate" default="5.0"/>
 
   <group ns="plume">
