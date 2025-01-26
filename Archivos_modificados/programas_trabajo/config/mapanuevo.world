@@ -1,0 +1,188 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.5">
+  <world name="example_underwater">
+    <physics name="default_physics" default="true" type="ode">
+      <max_step_size>0.002</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>500</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <sor>0.5</sor>
+        </solver>
+      </ode>
+    </physics>
+    <scene>
+      <ambient>0.01 0.01 0.01 1.0</ambient>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <shadows>1</shadows>
+    </scene>
+
+    <!-- Global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://tutorial_seabed</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- A partir de aqui modificar -->
+
+<model name='laberinto'>
+      <static>true</static>
+      
+      <!-- Marco exterior -->
+      <link name='pared_exterior_norte'>
+        <pose>-5 10 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>30 0.5 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>30 0.5 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+
+      <link name='pared_exterior_sur'>
+        <pose>-5 -20 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>30 0.5 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>30 0.5 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+      <link name='pared_exterior_este'>
+        <pose>10 -5 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 30 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.5 30 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+      <link name='pared_exterior_oeste'>
+        <pose>-20 -5 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 30 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.5 30 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+      
+      <!-- Paredes internas adicionales -->
+      <link name='pared3'>
+        <pose>2 0 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 20 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.5 20 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+      <link name='pared4'>
+        <pose>-12 -10 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 20 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.5 20 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+<link name='pared5'>
+        <pose>-1 0 -2 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>7 0.5 7</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>7 0.5 7</size>
+            </box>
+            <material>
+              <ambient>0.4 0.2 0 1</ambient>
+            </material>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

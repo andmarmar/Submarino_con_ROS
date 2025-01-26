@@ -1,0 +1,7 @@
+
+obstacle_range: 5
+raytrace_range: 6
+footprint: [[0.3, 0.3], [-0.3, 0.3], [-0.3, -0.3], [0.3, -0.3]]
+inflation_radius: 0.1
+observation_sources: laser_scan_sensor
+laser_scan_sensor: {sensor_frame: rexrov/sonar_link, data_type: LaserScan, topic: /rexrov/sonar, marking: true, clearing: true}

@@ -1,0 +1,86 @@
+disturbances:
+  -
+    type: current
+    starting_time: 30
+    velocity: 1
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 35
+    velocity: 2
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 40
+    velocity: 1
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 45
+    velocity: 0
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 170
+    velocity: 1
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 175
+    velocity: 2
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 180
+    velocity: 2.5
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 185
+    velocity: 2
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 190
+    velocity: 1
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: current
+    starting_time: 195
+    velocity: 0
+    horizontal_angle: 0
+    vertical_angle: 0
+    duration: 5
+  -
+    type: thruster_state
+    starting_time: 250
+    duration: 10
+    thruster_id: 2
+    is_on: false
+  -
+    type: thruster_state
+    starting_time: 280
+    duration: 10
+    thruster_id: 5
+    is_on: false
+
+
+
