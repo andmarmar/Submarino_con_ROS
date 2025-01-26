@@ -91,6 +91,28 @@ roslaunch uuv_plume_simulator start_plume_server.launch current_velocity_topic:=
 roslaunch uuv_plume_simulator start_demo_turbulent_plume.launch
 
 ```
+
+> **Generación de mapas**
+
+```
+1) 
+``` 1º terminal (Carga del programa con las dependencias para poder monitorizar el mapa
+roslaunch  uuv_tutorial_dp_controller start_tutorial_dp_controller_demo_mapeado.launch
+  
+``` 2º terminal (Cualquier programa de movimiento)
+roslaunch  programas_trabajo teclado.launch
+De esta forma se podrá crear en RVIZ el mapa.
+
+2)
+``` 1º terminal
+roslaunch  uuv_tutorial_dp_controller start_tutorial_dp_controller_demo_carga_mapa.launch
+  
+``` 2º terminal (Generación del mapa ya creado sobre RVIZ)
+roslaunch  programas_trabajo map_server.launch
+
+Añadiendo al RVIZ los topics move_base pertinentes se tendrá la previsualización del mapa.
+```
+
 # Referencias usadas
 
 
