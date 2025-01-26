@@ -3,13 +3,14 @@
     <arg name="record" default="false"/>
 
     <!-- Start the a underwater world simulation scenario -->    
-    <include file="$(find uuv_gazebo_worlds)/launch/empty_underwater_world.launch"/>
+    <include file="$(find uuv_tutorial_seabed_world)/launch/mundocreado.launch"/>
 
     <!-- Add the RexROV vehicle to the simulation (namespace: rexrov) -->
-    <include file="$(find uuv_descriptions)/launch/upload_rexrov.launch">
-        <arg name="x" default="20"/>
-        <arg name="y" default="0"/>
-        <arg name="z" default="-20"/>
+    <include file="$(find uuv_descriptions)/launch/upload_rexrov_default.launch">
+	<arg name="mode" value="sonar"/>
+        <arg name="x" default="5"/>
+        <arg name="y" default="5"/>
+        <arg name="z" default="-1"/>
         <arg name="yaw" default="0"/>
     </include>
 
@@ -27,13 +28,34 @@
     <!-- Open RViz for visualization of sensor data and visualization markers -->
     <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find uuv_gazebo)/rviz/controller_demo.rviz"/>
 
+    <node pkg="tf" type="static_transform_publisher" name="world_to_odom_broadcaster" args="0 0 0 0 0 0 /world /rexrov/odom 200"/>
+    <node pkg="tf" type="static_transform_publisher" name="world_to_map_broadcaster" args="0 0 0 0 0 0 /world /map 30" /> 
 
+
+    <node pkg="gmapping" type="slam_gmapping" name="gmapping" output="screen">
+	<param name="base_frame" value="/rexrov/base_link"/>
+	<param name="odom_frame" value="/rexrov/pose_gt"/>
+	<param name="map_update_interval" value="2.0"/>
+	<param name="xmin" value="-20.0"/>
+	<param name="xmax" value="10.0"/>
+	<param name="ymin" value="-20.0"/>
+	<param name="ymax" value="10.0"/>
+
+	<param name="particles" value="50.0"/>
+	<remap from="scan" to="/rexrov/sonar"/>
+
+	<param name="delta" value="0.1"/>
+
+	
+
+    </node>
     <!--
     You can run this demo as
 
     >> roslaunch uuv_tutorial_dp_controller start_tutorial_dp_controller_demo.launch
 
     and you can then send some waypoints to the vehicle to see it working
+    
 
     >> roslaunch uuv_control_utils send_waypoints_file.launch uuv_name:=rexrov
     -->

@@ -1,5 +1,5 @@
 <launch>
-    <!-- If you want to generate a ROS bag with the recorded simulated data, set this flag to true -->
+    <!-- SI QUIERES GENERAR UN RECORD CON LOS DATOS, TRUE -->
     <arg name="record" default="false"/>
 
     <!-- CARGAMOS EL MAPA -->    
@@ -20,17 +20,17 @@
 	<arg name="joy_id" value="0"/>
     </include>
 
-    <!-- Start the recording node  -->
+    <!-- INICIO NODO RECORD  -->
     <include file="$(find uuv_gazebo)/launch/controller_demos/record_demo.launch">
       <arg name="record" value="$(arg record)"/>
     </include>
 
-    <!-- Open RViz for visualization of sensor data and visualization markers -->
+    <!-- INICIO RVIZ -->
     <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find uuv_gazebo)/rviz/controller_demo.rviz"/>
 
 
     <!--
-    You can run this demo as
+    Puedes inicializar este tutorial como:
 
     >> roslaunch uuv_tutorial_dp_controller joystick.launch
 
